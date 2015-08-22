@@ -1,7 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
+~/Desktop/PizzaBot-Pvl/tilausLista.txt
 # C extensions
 *.so
 

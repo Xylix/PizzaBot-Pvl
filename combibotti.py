@@ -22,7 +22,7 @@ REALNAME = "Egen ja XyliXin pizzabotti"
 pizzaList = getOrders()
 print(type(pizzaList))
 #velkaList = []
-komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "apu", "showlist"]
+komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "help", "showlist", "showmenu"]
 def command(msg):
     msg = msg[7: ]
     if msg.startswith("tilaa"):
@@ -52,10 +52,11 @@ def makeString(x):
     #return (pizzaList)
 
 def tilaa(tilaus):
+
         tilaus = tilaus[5: ]
         tilaus = tilaus.split("//")
         print (tilaus)
-        addOrder (tilaus[0], tilaus[1], tilaus[2])
+        addOrderTxt (tilaus[0], tilaus[1], tilaus[2])
         addOrders(tilaus[0], tilaus[1], tilaus[2])
 
 def apu():
@@ -64,7 +65,7 @@ def apu():
     sendmsg("komennon alkuun!pizza-", CHANNEL)
     sendmsg(komennot, CHANNEL)
 
-def addOrder(user, pizza, order):
+def addOrderTxt(user, pizza, order):
     paid = False
     global pizzaList
     pizzaList.append((user, pizza, order))
@@ -85,9 +86,9 @@ def showList():
 
 def showMenu(table):
     for row in ruokalista.printTable(table):
-        separator = " , "
+        separator = " // "
         sendmsg(separator.join(str(i) for i in row) + "\n")
-    
+
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza-"):
         command(msg.lower())
