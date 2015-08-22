@@ -3,6 +3,7 @@
 import socket
 import time
 import ruokalista
+import json
 
 def getOrders():
     f = open("tilausLista.txt", "r")
@@ -33,11 +34,17 @@ def command(msg):
         deadline(msg)
     elif msg.startswith("showlist"):
         showList()
-    elif msg.startswith("showmenu"):
-        showMenu(msg.split(" ")[1])
+    elif msg.startswith("showmenu"): #Muista valita mikä menu listataan (vaihtoehdot [muut, pizzat])
+        if " " in msg:
+            showMenu(msg.split(" ")[1])
+        else:
+            sendmsg("Syntaxi komennolle on !pizza-showmenu [muut tai pizzat]")
+
+
 def addOrders(user, pizza, order):
     paid = False
     pizzaList.append((user, pizza, order, paid))
+
 def makeString(x):
     parsed = pizzaList[x][0] + " // " + pizzaList[x][1] + " // " + pizzaList[x][2] + "€"
     return parsed
@@ -77,7 +84,6 @@ def showList():
         sendmsg(makeString(x), CHANNEL)
 
 def showMenu(table):
-    print("Kappa")
     sendmsg(ruokalista.printTable(table))
 
 def botti(chan, nick, msg):

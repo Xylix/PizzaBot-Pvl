@@ -8,3 +8,5 @@
  revol, al capone, 8.50
  revol, al capone, 8.50
  revol, al capone, 8.50
+ kappa, kappa, 10
+ xylix,  opera,  8.50€
