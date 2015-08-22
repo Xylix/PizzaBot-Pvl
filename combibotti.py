@@ -11,24 +11,33 @@ CHANNEL = "#botwars"
 REALNAME = "Egen ja XyliXin pizzabotti"
 pizzaList = []
 #velkaList = []
-komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "apu"]
+komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "apu", "showlist"]
 def command(msg):
     msg = msg[7: ]
     if msg.startswith("tilaa"):
         #print (msg)
-        tilaa (msg)
+        tilaa(msg)
     elif msg.startswith("help"):
         apu()
     elif msg.startswith("deadline"):
         deadline(msg)
     elif msg.startswith("showlist"):
         showList()
-def addOrder (user, pizza, order):
+def addOrder(user, pizza, order):
     paid = False
     pizzaList.append((user, pizza, order, paid))
+def makeString():
+    parsed = ""
+    print("testiStart")
+    for x in range(0, len(pizzaList)):
+        print("testiLoop")
+        parsed += pizzaList[x][0] + "\n"# + pizzaList[x][1]+ "\n" + pizzaList[x][2]+ "\n"
+    return parsed
+
+    #return (pizzaList)
 
 def tilaa(tilaus):
-        tilaus = tilaus[: ]
+        tilaus = tilaus[5: ]
         tilaus = tilaus.split("//")
         print (tilaus)
         addOrder (tilaus[0], tilaus[1], tilaus[2])
@@ -39,15 +48,13 @@ def apu():
     sendmsg("komennon alkuun!pizza-", CHANNEL)
     sendmsg(komennot, CHANNEL)
 
-def addOrder (user, pizza, order):
+def addOrder(user, pizza, order):
     paid = False
     pizzaList.append(    (user, pizza, order, paid)    )
 def sendmsg(msg, channel):
     sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
-def showList ():
-    sendmsg (makeString, CHANNEL)
-def makeString (pizzaList):
-    return str (pizzaList)
+def showList():
+    sendmsg(makeString(), CHANNEL)
 
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza-"):
