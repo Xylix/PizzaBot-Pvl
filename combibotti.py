@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 import socket
 import time
-#import komennonluku
-#import sendRaw
-#import ruokalista
+import ruokalista
 
 NICK = "pizzaBoy"
 CHANNEL = "#botwars"
@@ -23,8 +21,8 @@ def command(msg):
         deadline(msg)
     elif msg.startswith("showlist"):
         showList()
-    elif msg.startwith("showmenu"):
-        showMenu()
+    elif msg.startswith("showmenu"):
+        showMenu(msg.split(" ")[1])
 def addOrder(user, pizza, order):
     paid = False
     pizzaList.append((user, pizza, order, paid))
@@ -50,27 +48,22 @@ def addOrder(user, pizza, order):
     paid = False
     pizzaList.append(    (user, pizza, order, paid)    )
 
-def sendmsg(msg, channel):
+def sendmsg(msg, channel=CHANNEL):
     sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
 
 def showList():
     for x in range(0, len(pizzaList)):
         sendmsg(makeString(x), CHANNEL)
 
-def showMenu():
+def showMenu(table):
     print("Kappa")
-
+    sendmsg(ruokalista.printTable(table))
 
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza-"):
         command(msg.lower())
     #elif msg.startswith(NICK):
      #   sendmsg("Hiljaa! Baka!!")
-
-
-# Älä koske tämän alla olevaan koodiin
-def sendmsg(msg, channel):
-    sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def sendRaw(msg):
