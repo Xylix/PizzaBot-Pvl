@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 pizzaList = []
-velkaList = []
+#velkaList = []
 komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "apu"]
 def command(msg):
     msg = msg[7: ]
@@ -16,7 +16,7 @@ def command(msg):
         showList()
 def addOrder (user, pizza, order):
     paid = False
-    pizzaList.append(    (user, pizza, order, paid)    )
+    pizzaList.append((user, pizza, order, paid))
 
 def tilaa(tilaus):
         tilaus = tilaus[: ]
@@ -31,10 +31,10 @@ def addOrder (user, pizza, order):
     paid = False
     pizzaList.append(    (user, pizza, order, paid)    )
 def showList ():
-    def sendmsg(#print(pizzaList), CHANNEL):
+    def sendmsg (makeString, CHANNEL):
         sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
 def makeString (pizzaList):
-    
+    return str (pizzaList)
 
 
 #testit

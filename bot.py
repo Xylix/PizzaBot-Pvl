@@ -12,7 +12,7 @@ pizzaList=[]
 
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza"):
-        komennonluku(msg.lower)
+        komennonluku.command(msg.lower)
     #elif msg.startswith(NICK):
      #   sendmsg("Hiljaa! Baka!!")
 
