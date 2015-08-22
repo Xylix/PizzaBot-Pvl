@@ -1,10 +1,11 @@
 import socket
 import time
+#import pizzaKolehti as p
 
 NICK = "pizzaBoy"
 CHANNEL = "#botwars"
 REALNAME = "Yanielin esimerkkibotti"
-
+pizzaList=[]
 
 def botti(chan, nick, msg):
     if msg.lower().startswith("!ping"):
@@ -14,8 +15,8 @@ def botti(chan, nick, msg):
 
 
 # Älä koske tämän alla olevaan koodiin
-def sendmsg(msg):
-    sendRaw("%s %s :%s" % ("PRIVMSG", CHANNEL, msg))
+def sendmsg(msg, channel):
+    sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def sendRaw(msg):
@@ -58,6 +59,9 @@ def listenToServer(callback):
                     msg = msg[1:]
                     callback(chan, nick, msg)
 
+def pizzaKolehti(order)
+    pizzaList.append (order)
+    
 
 if __name__ == "__main__":
     try:
