@@ -11,8 +11,8 @@ REALNAME = "Yanielin esimerkkibotti"
 pizzaList=[]
 
 def botti(chan, nick, msg):
-    if msg.lower().startswith("!pizza"):
-        komennonluku.command(msg.lower)
+    if msg.lower().startswith("!pizza-"):
+        komennonluku.command(msg.lower())
     #elif msg.startswith(NICK):
      #   sendmsg("Hiljaa! Baka!!")
 
