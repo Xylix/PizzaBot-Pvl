@@ -23,15 +23,13 @@ def command(msg):
         deadline(msg)
     elif msg.startswith("showlist"):
         showList()
+    elif msg.startwith("showmenu")
+        showMenu()
 def addOrder(user, pizza, order):
     paid = False
     pizzaList.append((user, pizza, order, paid))
-def makeString():
-    parsed = ""
-    print("testiStart")
-    for x in range(0, len(pizzaList)):
-        print("testiLoop")
-        parsed += pizzaList[x][0] + "\n"# + pizzaList[x][1]+ "\n" + pizzaList[x][2]+ "\n"
+def makeString(x):
+    parsed = pizzaList[x][0] + " // " + pizzaList[x][1] + " // " + pizzaList[x][2] + "€"
     return parsed
 
     #return (pizzaList)
@@ -51,10 +49,17 @@ def apu():
 def addOrder(user, pizza, order):
     paid = False
     pizzaList.append(    (user, pizza, order, paid)    )
+
 def sendmsg(msg, channel):
     sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
+
 def showList():
-    sendmsg(makeString(), CHANNEL)
+    for x in range(0, len(pizzaList)):
+        sendmsg(makeString(x), CHANNEL)
+
+def showMenu():
+    print("Kappa")
+        
 
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza-"):
