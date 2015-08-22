@@ -4,10 +4,21 @@ import socket
 import time
 import ruokalista
 
+def getOrders():
+    f = open("tilausLista.txt", "r")
+    orderList = f.read()
+    f.close()
+    pizzaList = []
+    for i in orderList.split("\n"):
+        pizzaList.append(i.split(","))
+    print (len(pizzaList), len(pizzaList[0]))
+    return pizzaList
+
 NICK = "pizzaBoy"
 CHANNEL = "#botwars"
 REALNAME = "Egen ja XyliXin pizzabotti"
-pizzaList = []
+pizzaList = getOrders()
+print(type(pizzaList))
 #velkaList = []
 komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "apu", "showlist"]
 def command(msg):
@@ -23,7 +34,7 @@ def command(msg):
         showList()
     elif msg.startswith("showmenu"):
         showMenu(msg.split(" ")[1])
-def addOrder(user, pizza, order):
+def addOrders(user, pizza, order):
     paid = False
     pizzaList.append((user, pizza, order, paid))
 def makeString(x):
@@ -37,6 +48,7 @@ def tilaa(tilaus):
         tilaus = tilaus.split("//")
         print (tilaus)
         addOrder (tilaus[0], tilaus[1], tilaus[2])
+        addOrders(tilaus[0], tilaus[1], tilaus[2])
 
 def apu():
     #print ("komennon alkuun !pizza-")
@@ -46,7 +58,15 @@ def apu():
 
 def addOrder(user, pizza, order):
     paid = False
-    pizzaList.append(    (user, pizza, order, paid)    )
+    global pizzaList
+    pizzaList.append((user, pizza, order))
+    f = open("tilausLista.txt", "r")
+    orderList = f.read()
+    orderList += ", ".join((user, pizza, order)) + "\n"
+    f.close()
+    f = open("tilausLista.txt", "w")
+    f.write(orderList)
+    f.close()
 
 def sendmsg(msg, channel=CHANNEL):
     sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
