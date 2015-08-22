@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sendRaw
+CHANNEL = "#botwars"
 pizzaList = []
 #velkaList = []
 komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "apu"]
@@ -25,14 +27,18 @@ def tilaa(tilaus):
         addOrder (tilaus[0], tilaus[1], tilaus[2])
 
 def apu():
-    print ("komennon alkuun !pizza-")
-    print (komennot)
+    #print ("komennon alkuun !pizza-")
+    #print (komennot)
+    sendmsg("komennon alkuun!pizza-", CHANNEL)
+    sendmsg(komennot, CHANNEL)
+
 def addOrder (user, pizza, order):
     paid = False
     pizzaList.append(    (user, pizza, order, paid)    )
+def sendmsg(msg, channel):
+    sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
 def showList ():
-    def sendmsg (makeString, CHANNEL):
-        sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
+    sendmsg (makeString, CHANNEL)
 def makeString (pizzaList):
     return str (pizzaList)
 
