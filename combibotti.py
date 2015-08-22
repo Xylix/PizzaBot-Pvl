@@ -23,7 +23,7 @@ def command(msg):
         deadline(msg)
     elif msg.startswith("showlist"):
         showList()
-    elif msg.startwith("showmenu")
+    elif msg.startwith("showmenu"):
         showMenu()
 def addOrder(user, pizza, order):
     paid = False
@@ -59,7 +59,7 @@ def showList():
 
 def showMenu():
     print("Kappa")
-        
+
 
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza-"):
