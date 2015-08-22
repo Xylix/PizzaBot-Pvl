@@ -1,8 +1,9 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import socket
 import time
-import pizzaKolehti as p
 import komennonluku
-import ruokalista
+#import ruokalista
 
 NICK = "pizzaBoy"
 CHANNEL = "#botwars"
