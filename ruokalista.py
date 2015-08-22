@@ -5,11 +5,13 @@ conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
 def printTable(table):
+
+    return c.execute("SELECT * FROM "+table+";")
     separator = " , "
     ret = ""
     for row in c.execute("SELECT * FROM "+table+";"):
-        ret += separator.join(row) + "\n"
-        return row
+        ret += separator.join(str(i) for i in row) + "\n"
+    return ret
 
     #return j
     #j=(c.fetchall()).split(")")

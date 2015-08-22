@@ -84,8 +84,10 @@ def showList():
         sendmsg(makeString(x), CHANNEL)
 
 def showMenu(table):
-    sendmsg(ruokalista.printTable(table))
-
+    for row in ruokalista.printTable(table):
+        separator = " , "
+        sendmsg(separator.join(str(i) for i in row) + "\n")
+    
 def botti(chan, nick, msg):
     if msg.lower().startswith("!pizza-"):
         command(msg.lower())
