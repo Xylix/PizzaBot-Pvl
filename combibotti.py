@@ -14,6 +14,7 @@ def getOrders():
     print (len(pizzaList), len(pizzaList[0]))
     return pizzaList
 
+
 NICK = "pizzaBoy"
 CHANNEL = "#botwars"
 REALNAME = "Egen ja XyliXin pizzabotti"
@@ -72,7 +73,7 @@ def sendmsg(msg, channel=CHANNEL):
     sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
 
 def showList():
-    for x in range(0, len(pizzaList)):
+    for x in range(0, len(pizzaList)-1):
         sendmsg(makeString(x), CHANNEL)
 
 def showMenu(table):
