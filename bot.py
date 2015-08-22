@@ -1,7 +1,7 @@
 import socket
 import time
 
-NICK = "alice"
+NICK = "pizzaBoy"
 CHANNEL = "#botwars"
 REALNAME = "Yanielin esimerkkibotti"
 

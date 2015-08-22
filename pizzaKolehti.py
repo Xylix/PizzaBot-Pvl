@@ -1,5 +1,1 @@
-
-pizzaList[]
-
-
-def pizzaList[]
+pizzaList=[]
