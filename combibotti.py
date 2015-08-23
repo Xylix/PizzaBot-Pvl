@@ -25,7 +25,7 @@ print(type(pizzaList))
 brake = True
 #velkaList = []
 dl = ""
-komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "help", "showlist", "showmenu", "setdeadline", "timeleft", ]
+komennot = ["tilaa<tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)>", "help", "showlist", "showmenu", "setdeadline", "timeleft"]
 def command(msg):
     msg = msg[7: ]
     global brake
@@ -82,8 +82,8 @@ def tilaa(tilaus):
 def apu():
     #print ("komennon alkuun !pizza-")
     #print (komennot)
-    sendmsg("komennon alkuun !pizza-", CHANNEL)
-    sendmsg(komennot, CHANNEL)
+    sendmsg("komennon alkuun !pizza-")
+    sendmsg(komennot)
 
 def addOrderTxt(user, pizza, order):
     paid = False
