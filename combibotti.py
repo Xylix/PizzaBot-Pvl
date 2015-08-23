@@ -23,8 +23,8 @@ REALNAME = "Egen ja XyliXin pizzabotti"
 pizzaList = getOrders()
 print(type(pizzaList))
 brake = True
-#velkaList = []
 dl = ""
+doLock = threading.Lock()
 komennot = ["tilaa<tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)>", "help", "showlist", "showmenu", "setdeadline", "timeleft"]
 def command(msg):
     msg = msg[7: ]
@@ -43,7 +43,6 @@ def command(msg):
         dl = deadline.setDeadLine(msg)
         if(not t.is_alive()):
             t.start()
-
     elif msg.startswith("timeleft"):
         sendmsg(deadline.deadLine(dl)[0])
         sendmsg(deadline.deadLine(dl)[1])
@@ -78,10 +77,7 @@ def tilaa(tilaus):
         sendmsg("Tilaus lisätty listalle")
     else:
         sendmsg("Pizzantilaussyntaxi: <tilaaja>//<pizza>//<hinta>")
-
 def apu():
-    #print ("komennon alkuun !pizza-")
-    #print (komennot)
     sendmsg("komennon alkuun !pizza-")
     sendmsg(komennot)
 
@@ -98,7 +94,9 @@ def addOrderTxt(user, pizza, order):
     f.close()
 
 def sendmsg(msg, channel=CHANNEL):
-    sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
+    with doLock:
+        sendRaw("%s %s :%s" % ("PRIVMSG", channel, msg))
+    #lock = threading.
 
 def showList():
     for x in range(0, len(pizzaList)-1):
