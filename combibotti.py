@@ -52,12 +52,17 @@ def makeString(x):
     #return (pizzaList)
 
 def tilaa(tilaus):
-
-        tilaus = tilaus[5: ]
-        tilaus = tilaus.split("//")
+    #if "//" in tilaus:
+    tilaus = tilaus[5: ]
+    tilausPituus = tilaus
+    tilaus = tilaus.split("//")
+    if len(tilaus) == 3:
         print (tilaus)
         addOrderTxt (tilaus[0], tilaus[1], tilaus[2])
         addOrders(tilaus[0], tilaus[1], tilaus[2])
+        sendmsg("Tilaus lisätty listalle")
+    else:
+        sendmsg("Pizzantilaussyntaxi: <tilaaja>//<pizza>//<hinta>")
 
 def apu():
     #print ("komennon alkuun !pizza-")
