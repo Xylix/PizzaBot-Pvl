@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import time
 import datetime
 import re
@@ -12,7 +14,7 @@ def deadLine(dl):
     #print (t)
     #dl = datetime.datetime(2015, 8, 23, 15, 00, 00)   #deadLine
     h=(time.mktime(t.timetuple()))/3600
-    dlh = (time.mktime(dl.timetuple()))/3600  #deadline tunneissa 
+    dlh = (time.mktime(dl.timetuple()))/3600  #deadline tunneissa
     #print (h)
     diff = dlh-h #ero deadlinen ja nykyheken välillä
     print ("Tunnit: %.1f" %(diff))
@@ -28,4 +30,3 @@ deadLine(dl)  #ja sit antaa sen sit tuolle deadlinelle ku kysytään
 #=> datetime.datetime(2003, 8, 6, 20, 43, 20)
 #print now.ctime()
 #=> Wed Aug  6 20:43:20 2003
-

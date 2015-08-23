@@ -4,6 +4,8 @@ import socket
 import time
 import ruokalista
 import json
+import re
+import datetime
 
 def getOrders():
     f = open("tilausLista.txt", "r")
@@ -30,8 +32,12 @@ def command(msg):
         tilaa(msg)
     elif msg.startswith("help"):
         apu()
-    elif msg.startswith("deadline"):
-        deadline(msg)
+    elif msg.startswith("apua"):
+        apu()
+    elif msg.startswith("setdeadline"):
+        dl=deadline.setDeadLine(msg)
+    elif msg.startswtih("timeleft"):
+        deadline.dl(dl)
     elif msg.startswith("showlist"):
         showList()
     elif msg.startswith("showmenu"): #Muista valita mikä menu listataan (vaihtoehdot [muut, pizzat])
