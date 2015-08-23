@@ -15,11 +15,26 @@ def deadLine(dl):
     dlh = (time.mktime(dl.timetuple()))/3600  #deadline tunneissa 
     #print (h)
     diff = dlh-h #ero deadlinen ja nykyheken välillä
-    print ("Tunnit: %.1f" %(diff))
+    print ("Tunteja deadlineen: %.1f" %(diff))
     print ("Deadline: " + dl.ctime())
+    return diff
 
-dl=setDeadLine("2015-08-25 20:00:00")  #pistä sinne komennonlukujuttuun et se antaa tälle sen msgn ja sit et se ottaa takas ton dl
-deadLine(dl)  #ja sit antaa sen sit tuolle deadlinelle ku kysytään
+dl=setDeadLine("2015-08-22 23:50:00")  #pistä sinne komennonlukujuttuun et se antaa tälle sen msgn ja sit et se ottaa takas ton dl
+diff=deadLine(dl)  #ja sit antaa sen sit tuolle deadlinelle ku kysytään
+
+if (diff <= 2): 
+    if (diff == 2):
+        print("2 h deadlineen!")
+        #sendmsg("Kaksi tuntia deadlineen!", CHANNEL)
+    elif (diff == 1):
+        print("1 h deadlineen!")
+        #sendmsg("Tunti deadlineen!", CHANNEL)
+    elif (diff == 0.5):
+        print("30 minuuttia deadlineen!")
+        #sendmsg("Puoli tuntia deadlineen!", CHANNEL)
+    elif (diff == 0.25):
+        print("15 minuuttia deadlineen!")
+        #sendmsg("15 minuuttia deadlineen!", CHANNEL)
 
 
 #now = datetime.datetime.fromtimestamp(EpochSeconds)
