@@ -5,4 +5,6 @@ conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
 def printTable(table):
-    return c.execute("SELECT * FROM "+table+";")
+    query = "SELECT * FROM "+table+";"
+    print (repr(query))
+    return [q for q in c.execute(query)]

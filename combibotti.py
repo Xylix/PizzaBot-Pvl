@@ -14,7 +14,7 @@ def getOrders():
     pizzaList = []
     for i in orderList.split("\n"):
         pizzaList.append(i.split(","))
-    print (len(pizzaList), len(pizzaList[0]))
+    #print (len(pizzaList), len(pizzaList[0]))
     return pizzaList
 
 NICK = "pizzaBoy"
@@ -35,6 +35,7 @@ def command(msg):
     if msg.startswith("tilaa"):
         #print (msg)
         tilaa(msg)
+
     elif msg.startswith("help"):
         apu()
     elif msg.startswith("apua"):
@@ -56,11 +57,13 @@ def command(msg):
 
 
 def addOrders(user, pizza, order):
-    paid = False
-    pizzaList.append((user, pizza, order, paid))
+    #paid = False
+    pizzaList.append((user, pizza, order))#, paid))
 
 def makeString(x):
+    #print (pizzaList)
     parsed = pizzaList[x][0] + " // " + pizzaList[x][1] + " // " + pizzaList[x][2] + "€"
+    #print (parsed)
     return parsed
 
     #return (pizzaList)
@@ -72,7 +75,7 @@ def tilaa(tilaus):
     tilaus = tilaus.split("//")
     if len(tilaus) == 3:
         print (tilaus)
-        addOrderTxt (tilaus[0], tilaus[1], tilaus[2])
+        addOrderTxt(tilaus[0], tilaus[1], tilaus[2])
         addOrders(tilaus[0], tilaus[1], tilaus[2])
         sendmsg("Tilaus lisätty listalle")
     else:
@@ -99,8 +102,11 @@ def sendmsg(msg, channel=CHANNEL):
     #lock = threading.
 
 def showList():
-    for x in range(0, len(pizzaList)-1):
-        sendmsg(makeString(x), CHANNEL)
+    for x in range(0, len(pizzaList)):
+        try:
+            sendmsg(makeString(x), CHANNEL)
+        except:
+            print("err")
 
 def showMenu(table):
     for row in ruokalista.printTable(table):
