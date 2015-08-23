@@ -3,9 +3,9 @@
 import socket
 import time
 import ruokalista
-import json
-import re
 import datetime
+import deadline
+
 
 def getOrders():
     f = open("tilausLista.txt", "r")
@@ -24,9 +24,11 @@ REALNAME = "Egen ja XyliXin pizzabotti"
 pizzaList = getOrders()
 print(type(pizzaList))
 #velkaList = []
+dl = ""
 komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "help", "showlist", "showmenu"]
 def command(msg):
     msg = msg[7: ]
+    global dl
     if msg.startswith("tilaa"):
         #print (msg)
         tilaa(msg)
@@ -35,9 +37,11 @@ def command(msg):
     elif msg.startswith("apua"):
         apu()
     elif msg.startswith("setdeadline"):
-        dl=deadline.setDeadLine(msg)
-    elif msg.startswtih("timeleft"):
-        deadline.dl(dl)
+        dl = deadline.setDeadLine(msg)
+    elif msg.startswith("timeleft"):
+        sendmsg(deadline.deadLine(dl)[0])
+        sendmsg(deadline.deadLine(dl)[1])
+
     elif msg.startswith("showlist"):
         showList()
     elif msg.startswith("showmenu"): #Muista valita mikä menu listataan (vaihtoehdot [muut, pizzat])
