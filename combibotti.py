@@ -5,7 +5,7 @@ import time
 import ruokalista
 import datetime
 import deadline
-
+import threading
 
 def getOrders():
     f = open("tilausLista.txt", "r")
@@ -23,12 +23,16 @@ CHANNEL = "#botwars"
 REALNAME = "Egen ja XyliXin pizzabotti"
 pizzaList = getOrders()
 print(type(pizzaList))
+brake = True
 #velkaList = []
 dl = ""
 komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "help", "showlist", "showmenu"]
 def command(msg):
     msg = msg[7: ]
+    global brake
     global dl
+    if(not brake):
+        t.join()
     if msg.startswith("tilaa"):
         #print (msg)
         tilaa(msg)
@@ -38,6 +42,14 @@ def command(msg):
         apu()
     elif msg.startswith("setdeadline"):
         dl = deadline.setDeadLine(msg)
+        if(not t.is_alive()):
+            t.start()
+
+        # try:
+        #     if(t):
+        #         pass
+        # except NameError:
+        #     t.start()
     elif msg.startswith("timeleft"):
         sendmsg(deadline.deadLine(dl)[0])
         sendmsg(deadline.deadLine(dl)[1])
@@ -121,11 +133,30 @@ def sendRaw(msg):
         totalsent += sent
     print("--> "+msg)
 
+def pizzaWatch():
+    global dl
+    while(True):
+        hours = float(deadline.deadLine(dl)[1][8:])
+        print (hours)
+        if (hours <0):
+            global brake
+            brake = False
+            sendmsg("Deadline on ohi")
 
+        elif (hours <= 0.25):
+            sendmsg("Alle 15 minuuttia deadlineen!")
+        elif(hours <= 0.5):
+            sendmsg("Alle puoli tuntia deadlineen!")
+        elif(hours <= 1):
+            sendmsg("Alle tunti deadlineen!")
+        elif(hours <= 2):
+            sendmsg("Alle 2 tuntia deadlineen!")
+        time.sleep(360)
 def listenToServer(callback):
     joined = False
     data = []
     while True:
+
         chunk = s.recv(1024)
         if chunk == '':
             raise RuntimeError("connection lost")
@@ -157,6 +188,7 @@ if __name__ == "__main__":
         s.connect(("irc.paivola.fi", 6667))
         sendRaw("NICK %s" % NICK)
         sendRaw("USER %s 0 * :%s" % (NICK, REALNAME))
+        t = threading.Thread(target=pizzaWatch, daemon=True)
         listenToServer(botti)
 
     except (KeyboardInterrupt):

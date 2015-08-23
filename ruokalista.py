@@ -6,4 +6,3 @@ c = conn.cursor()
 
 def printTable(table):
     return c.execute("SELECT * FROM "+table+";")
-    

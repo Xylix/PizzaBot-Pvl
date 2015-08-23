@@ -13,3 +13,4 @@ def deadLine(dl):
     dlh = (time.mktime(dl.timetuple()))/3600    #deadline tunneissa
     diff = dlh-h    #ero deadlinen ja nykyheken välillä
     return ("Deadline: " + dl.ctime(),"Tunnit: %.1f" %(diff))
+    
