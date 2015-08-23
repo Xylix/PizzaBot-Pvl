@@ -82,7 +82,7 @@ def tilaa(tilaus):
 def apu():
     #print ("komennon alkuun !pizza-")
     #print (komennot)
-    sendmsg("komennon alkuun!pizza-", CHANNEL)
+    sendmsg("komennon alkuun !pizza-", CHANNEL)
     sendmsg(komennot, CHANNEL)
 
 def addOrderTxt(user, pizza, order):
