@@ -17,7 +17,6 @@ def getOrders():
     print (len(pizzaList), len(pizzaList[0]))
     return pizzaList
 
-
 NICK = "pizzaBoy"
 CHANNEL = "#botwars"
 REALNAME = "Egen ja XyliXin pizzabotti"
@@ -26,7 +25,7 @@ print(type(pizzaList))
 brake = True
 #velkaList = []
 dl = ""
-komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "help", "showlist", "showmenu"]
+komennot = ["tilaa[tilaaja//pizza//hinta(euroissa, ei euro-merkkiä!)]", "help", "showlist", "showmenu", "setdeadline", "timeleft", ]
 def command(msg):
     msg = msg[7: ]
     global brake
@@ -45,19 +44,13 @@ def command(msg):
         if(not t.is_alive()):
             t.start()
 
-        # try:
-        #     if(t):
-        #         pass
-        # except NameError:
-        #     t.start()
     elif msg.startswith("timeleft"):
         sendmsg(deadline.deadLine(dl)[0])
         sendmsg(deadline.deadLine(dl)[1])
-
     elif msg.startswith("showlist"):
         showList()
     elif msg.startswith("showmenu"): #Muista valita mikä menu listataan (vaihtoehdot [muut, pizzat])
-        if " " in msg:
+        if (" ") in msg:
             showMenu(msg.split(" ")[1])
         else:
             sendmsg("Syntaxi komennolle on !pizza-showmenu [muut tai pizzat]")
@@ -142,7 +135,6 @@ def pizzaWatch():
             global brake
             brake = False
             sendmsg("Deadline on ohi")
-
         elif (hours <= 0.25):
             sendmsg("Alle 15 minuuttia deadlineen!")
         elif(hours <= 0.5):

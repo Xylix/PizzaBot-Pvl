@@ -1,20 +1,8 @@
- xylix, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- revol, al capone, 8.50
- kappa, kappa, 10
- xylix,  opera,  8.50€
- xylix, al-capone, 15
- xylix, al-capone, 15
- xylix, al-capone, 15
- xylix, al-capone, 15
- kappa, kappa, kappa
- kappaa, kappaa, kappaa
- kappaa, kappaa, kappaa
- kappaa, kappa, kappa€
+ asd, asd, asd
+ ege, al capone -aurajuusto, 8.50
+ ege, al capone, 8.50
+ x, kebu, 100
+ x, kebu, 100
+ x, kebu, 100
+ x, kebu, 100
+ asd, asd, asd
